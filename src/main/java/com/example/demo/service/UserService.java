@@ -28,9 +28,12 @@ public class UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
-
+    @Transactional(rollbackFor = UserAgeInvalidException.class)
     public User updateUser(Long id, User userDetails) {
         User user = userRepository.findById(id).orElse(null);
+        if(userDetails.getAge() < 0){
+          throw new UserAgeInvalidException(userDetails.getAge());
+        }
         if (user != null) {
             user.setName(userDetails.getName());
             user.setAge(userDetails.getAge());
