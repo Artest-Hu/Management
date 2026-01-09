@@ -3,7 +3,7 @@ spring:
     name: demo
   datasource:
     username: root
-    password: 740626
+    password: 123456
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
   jpa:
